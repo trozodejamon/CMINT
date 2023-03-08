@@ -6,6 +6,11 @@ This version is known to run reasonably well on the Arduino UNO/Nano, 8051 (SDCC
 
 Refer to <https://github.com/orgMINT/MINT> to find the original project and to learn the language.
 
+## Yet to be done
+1. Arrays [] - entering balanced [] is already supported by the line editing routine, but not by the interpreter.
+2. Break from loop.
+3. Pin GPIO input/output \\> and \\<
+
 ## Porting Instructions
 1. You need to take the mint.c and mint.h files (renaming extensions as needed for convenience), add it to the project of your platform/IDE of choice.
 2. Then you need to implement the following functions in your own project:
