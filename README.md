@@ -11,6 +11,11 @@ Refer to <https://github.com/orgMINT/MINT> to find the original project and to l
 2. Break from loop.
 3. Pin GPIO input/output \\> and \\<
 
+## Differences from the original MINT
+1. CMINT will abort input or execution with an error message, whereas original Z80 MINT often will continue.
+2. If there aren't enough elements in the stack, original Z80 MINT will often retrieve 0, but CMINT will trigger a stack underflow error.
+3. CMINT has a \\m bytecode that will immediately push the current milliseconds elapsed since bootup or since the last timer overflow.
+
 ## Porting Instructions
 1. You need to take the mint.c and mint.h files (renaming extensions as needed for convenience), add it to the project of your platform/IDE of choice.
 2. Then you need to implement the following functions in your own project:
