@@ -23,3 +23,32 @@ Refer to <https://github.com/orgMINT/MINT> to find the original project and to l
 - rxChar()
 - available()
 - getMillis()
+
+## CMINT Benchmarks
+Benchmarks, because of course, we need to know. These benchmarks are of what has become a typical "million empty loop" test. Basically, it looks like this:
+
+> 1000(1000())
+
+But to this, we will add some special words available currently only in CMINT, the ```\m``` word, which pushes the number of milliseconds elapsed since bootup
+(or the last rollover) onto the data stack, so it now looks like this:
+
+>\m1000(1000())\m$-.
+
+For the uninitiated, this means:
+1. Push milliseconds onto top of stack (TOS).
+2. Run 1000 loops of 1000 loops.
+3. Push milliseconds onto TOS (so now we have before and after milliseconds).
+4. Swap the two stack values so we now have them ordered as [after, before] with '$'.
+5. Subtract before from after using '-'.
+6. Pop the value off the stack and dispay the value on the terminal with '.'.
+
+| Device | Core | MHz | Time | Clocks Per Iteration | Iterations/s |
+| ------ | ---- | --- | ---- | -------------------- | ------------ |
+| Sipeed Maix Bit 2 | RISC-V RV64GC | 400 | 0.1557 | 62 |  6,422,607 |
+| ESP32-C3 | RISC-V RV32I | 160 | 0.392 | 63 |  2,551,020 |
+| ESP32 | Tensilica Xtensa LX7 | 240 | 0.4 | 96 |  2,500,000 |
+| RP2040 | ARM Cortex M0+ | 125 | 0.612 | 76 |  1,633,986 |
+| STM32F401 | ARM Cortex M4 | 84 | 1.007 | 85 |  993,048 |
+| STM32F042 | ARM Cortex M0+ | 48 | 2.137 | 102 |  467,945 |
+| ATmega328P | AVR | 16 | 5.116 | 82 |  195,465 |
+| STC15F2K60S2 | 8052 | 11.0572 | 32.4 | 143 |  30,864 |
