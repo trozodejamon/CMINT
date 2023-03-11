@@ -36,7 +36,7 @@ But to this, we will add some special words available currently only in CMINT, t
 
 For the uninitiated, this means:
 1. Push milliseconds onto top of stack (TOS).
-2. Run 1000 loops of 1000 loops.
+2. Run 1000 loops of 1000 loops. (Why do it as nested loops? 1. To test nested loops and 2. So that the same code runs the same on 8-bit and 32-bit systems, which use different integer word lengths).
 3. Push milliseconds onto TOS (so now we have before and after milliseconds).
 4. Swap the two stack values so we now have them ordered as [after, before] with '$'.
 5. Subtract before from after using '-'.
