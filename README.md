@@ -42,13 +42,13 @@ For the uninitiated, this means:
 5. Subtract before from after using '-'.
 6. Pop the value off the stack and dispay the value on the terminal with '.'.
 
-| Device | Core | MHz | Time | Clocks Per Iteration | Iterations/s |
-| ------ | ---- | --- | ---- | -------------------- | ------------ |
-| Sipeed Maix Bit 2 | RISC-V RV64GC | 400 | 0.1557 | 62 |  6,422,607 |
-| ESP32-C3 | RISC-V RV32I | 160 | 0.392 | 63 |  2,551,020 |
-| ESP32 | Tensilica Xtensa LX7 | 240 | 0.4 | 96 |  2,500,000 |
-| RP2040 | ARM Cortex M0+ | 125 | 0.612 | 76 |  1,633,986 |
-| STM32F401 | ARM Cortex M4 | 84 | 1.007 | 85 |  993,048 |
-| STM32F042 | ARM Cortex M0+ | 48 | 2.137 | 102 |  467,945 |
-| ATmega328P | AVR | 16 | 5.116 | 82 |  195,465 |
-| STC15F2K60S2 | 8052 | 11.0572 | 32.4 | 143 |  30,864 |
+| Device | Core | MHz | Time | Clocks Per Iteration | Iterations/s | Dev Tool |
+| ------ | ---- | --- | ---- | -------------------- | ------------ | -------- |
+| Sipeed Maix Bit 2 | RISC-V RV64GC | 400 | 0.1557 | 62 |  6,422,607 | Arduino |
+| ESP32-C3 | RISC-V RV32I | 160 | 0.392 | 63 |  2,551,020 | Arduino |
+| ESP32 | Tensilica Xtensa LX7 | 240 | 0.4 | 96 |  2,500,000 | Arduino |
+| RP2040 | ARM Cortex M0+ | 125 | 0.612 | 76 |  1,633,986 | Arduino |
+| STM32F401 | ARM Cortex M4 | 84 | 1.007 | 85 |  993,048 | STM32CubeIDE |
+| STM32F042 | ARM Cortex M0+ | 48 | 2.137 | 102 |  467,945 | Keil uVision 5 |
+| ATmega328P | AVR | 16 | 5.116 | 82 |  195,465 | Arduino |
+| STC15F2K60S2 | 8052 | 11.0572 | 32.4 | 143 |  30,864 | SDCC |
