@@ -6,6 +6,8 @@ This version is known to run reasonably well on the Arduino UNO/Nano, 8051 (SDCC
 
 Refer to <https://github.com/orgMINT/MINT> to find the original project and to learn the language.
 
+The files needed to build the project with SDCC on an STC 8051 or similar can be found in the "mcs51" subfolder.
+
 ## Yet to be done
 1. Arrays [] - entering balanced [] is already supported by the line editing routine, but not by the interpreter.
 2. Break from loop.
