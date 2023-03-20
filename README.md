@@ -12,6 +12,7 @@ The files needed to build the project with SDCC on an STC 8051 or similar can be
 1. Arrays [] - entering balanced [] is already supported by the line editing routine, but not by the interpreter.
 2. Break from loop.
 3. Pin GPIO input/output \\> and \\<
+4. I would like to add some basic support for fixed-point math.
 
 ## Differences from the original MINT
 1. CMINT will abort input or execution with an error message, whereas original Z80 MINT often will continue.
@@ -54,3 +55,7 @@ For the uninitiated, this means:
 | STM32F042 | ARM Cortex M0+ | 48 | 2.137 | 102 |  467,945 | Keil uVision 5 |
 | ATmega328P | AVR | 16 | 5.116 | 82 |  195,465 | Arduino |
 | STC15F2K60S2 | 8052 | 11.0572 | 32.4 | 143 |  30,864 | SDCC |
+
+## Known Issues
+1. The printDec() routine actually only displays +/- values within the range of +/- 32,767 on 8-bit systems using a 16-bit int as its cell size and 
++/- 2,147,483,647 on 32-bit systems. I.e., it can't display -32,768 or -2,147,483,648 on those respective systems.
