@@ -2,7 +2,7 @@
 An implementation of the Minimal Interpreted Language in portable C.
 Original version for the Z80-powered TEC-1 Computer by [Ken Boak](https://github.com/monsonite), [John Hardy](https://github.com/jhlagado)
 and [Craig Jones](https://github.com/crsjones). MINT is a human readable bytecode interpreter.
-This version is known to run reasonably well on the Arduino UNO/Nano, 8051 (SDCC), STM32 (Keil & STM32Cube), ESP32, ESP32-C3, RP2040.
+This version is known to run reasonably well on the Arduino UNO/Nano, 8051 (SDCC), STM32 (Keil & STM32Cube), ESP32, ESP32-C3, RP2040, and dsPIC33CK.
 
 Refer to <https://github.com/orgMINT/MINT> to find the original project and to learn the language.
 
@@ -50,6 +50,7 @@ For the uninitiated, this means:
 | Sipeed Maix Bit 2 | RISC-V RV64GC | 400 | 0.1557 | 62 |  6,422,607 | Arduino |
 | ESP32-C3 | RISC-V RV32I | 160 | 0.392 | 63 |  2,551,020 | Arduino |
 | ESP32 | Tensilica Xtensa LX7 | 240 | 0.4 | 96 |  2,500,000 | Arduino |
+| dsPIC33CK | dsPIC | 100 | 0.563 | 56 | 1,776,199 | MPLAB X |
 | RP2040 | ARM Cortex M0+ | 125 | 0.612 | 76 |  1,633,986 | Arduino |
 | STM32F401 | ARM Cortex M4 | 84 | 1.007 | 85 |  993,048 | STM32CubeIDE |
 | STM32F042 | ARM Cortex M0+ | 48 | 2.137 | 102 |  467,945 | Keil uVision 5 |
