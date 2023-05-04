@@ -1,7 +1,7 @@
 /********************************************************************************
  * MINT Main Source
  * Jason CJ Tay
- * TODO: [] arrays, printDec/printHex auto-sizing
+ * TODO: [] arrays, early loop exit
  * int: 4 bytes, long: 4 bytes, char*: 4 bytes
  ********************************************************************************/
 #include "mint.h"
@@ -66,6 +66,10 @@ void printDec(int val)
   char buf[21] = " 0000000000000000000";
   cc = 19;  // point to the last usable element in the buffer
   maxc=20;
+#elif defined(__16bit__)
+  char buf[7] = " 00000";
+  cc = 5;  // point to the last usable element in the buffer
+  maxc=6;
 #else
   char buf[13] = " 00000000000";
   cc = 11;  // point to the last usable element in the buffer
@@ -492,10 +496,10 @@ void interpret(char *pr)
         break;
       case '#':     // Following number is hexadecimal
         ti = 0;
-        pr++;
-        while(((*pr >= '0') && (*pr <= '9')) || (((*pr >= 'a') || (*pr >= 'A')) && ((*pr <= 'f') || (*pr <= 'F'))))
+        pr++;        // Move to the char after the '#'
+        while(((*pr >= '0') && (*pr <= '9')) || ((*pr >= 'a') && (*pr <= 'f')) || ((*pr >= 'A') && (*pr <= 'F')))
         {
-          ti <<= 4;
+          ti <<= 4;                             // Shift by 1 hex digit
           if(*pr <= '9') ti |= *pr - '0';       // Numerals
           else if(*pr >= 'a') ti |= *pr - 87;   // Lower case a-f
           else ti |= *pr - 55;                  // Upper case A-F
@@ -695,6 +699,24 @@ void interpret(char *pr)
         }
         pr++;
         break;
+      case '^':     // Bitwise XOR
+        if(tos < 1) retval = ERR_UNDERFLOW;
+        else
+        {
+          dstack[tos-1] = dstack[tos-1] ^ dstack[tos];
+          retval = drop1();
+        }
+        pr++;
+        break;
+      case '_':     // Negation NEG
+        if(tos<0) retval = ERR_UNDERFLOW;
+        else
+        {
+          retval = ERR_NONE;
+          dstack[tos] = -dstack[tos];
+        }
+        pr++;
+        break;
       case ':':     // Define a new 'word'
         pr++;       // Advance next char
         if((*pr >= 'A') && (*pr <= 'Z'))
@@ -783,24 +805,6 @@ void interpret(char *pr)
         pr++;
         break;
       case ']':     // End and array definition
-        pr++;
-        break;
-      case '^':     // Bitwise XOR
-        if(tos < 1) retval = ERR_UNDERFLOW;
-        else
-        {
-          dstack[tos-1] = dstack[tos-1] ^ dstack[tos];
-          retval = drop1();
-        }
-        pr++;
-        break;
-      case '_':     // Negation NEG
-        if(tos<0) retval = ERR_UNDERFLOW;
-        else
-        {
-          retval = ERR_NONE;
-          dstack[tos] = -dstack[tos];
-        }
         pr++;
         break;
       case '`':     // Print a string
@@ -936,13 +940,7 @@ void interpret(char *pr)
                 pr++;
                 break;
               case '4':     // Non-destructively print MINT stack
-                if(tos > -1)
-                {
-                  if(numMode == NUMODE_DEC)
-                    printDec(dstack[tos]);
-                  else
-                    printHex(dstack[tos], 0);
-                }
+                printDStack();
                 pr++;
                 retval = ERR_NONE;
                 break;
@@ -990,10 +988,10 @@ void mintInit(void)
   execLast = -1;
   for(ti=0; ti<26; ti++) execPtrs[ti] = 0;
   printStr("MINT 1.1", 8);
-  printStr("\n\rInt: ", 7);
-  printDec(sizeof(CELL_T));
-  printStr(" Ptr: ", 6);
-  printDec(sizeof(CELL_T*));
+//  printStr("\n\rInt: ", 7);
+//  printDec(sizeof(CELL_T));
+//  printStr(" Ptr: ", 6);
+//  printDec(sizeof(CELL_T*));
 }
 
 void mintRun(void)
