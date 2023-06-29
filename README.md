@@ -56,6 +56,7 @@ For the uninitiated, this means:
 | STM32F042 | ARM Cortex M0+ | 48 | 2.137 | 102 |  467,945 | Keil uVision 5 |
 | ATmega328P | AVR | 16 | 5.116 | 82 |  195,465 | Arduino |
 | STC15F2K60S2 | 8052 | 11.0572 | 32.4 | 143 |  30,864 | SDCC |
+
 **Notes**
 1. Compiler optimisations. The STM32F042 test were done at -O1 and -O3 optimisations. At -O3, the benchmark improved slightly to 2.023s.
 2. To me, the standouts in these tests are the AVR, dsPIC and RISC-V. The ARM chips are all running in 32-bits operating on 32-bit values. The AVR is running in 8-bit working on 16-bit values. It's impressive how good its Iterations/MHz score is.
