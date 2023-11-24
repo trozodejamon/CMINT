@@ -18,6 +18,7 @@ The files needed to build the project with SDCC on an STC 8051 or similar can be
 1. CMINT will abort input or execution with an error message, whereas original Z80 MINT often will continue.
 2. If there aren't enough elements in the stack, original Z80 MINT will often retrieve 0, but CMINT will trigger a stack underflow error.
 3. CMINT has a \\m bytecode that will immediately push the current milliseconds elapsed since bootup or since the last timer overflow.
+4. CMINT uses sandboxed, pre-allocated spaces for the built-in variables and the user defined dictionary of words. If you clear a definition, fragmentation will occur that can only be fixed with a reset. See mint.h for the defines that indicate the maximum input buffer and execution buffer sizes. The execution buffer (execBuf) is where user defined words are stored).
 
 ## Porting Instructions
 1. You need to take the mint.c and mint.h files (renaming extensions as needed for convenience), add it to the project of your platform/IDE of choice.
@@ -60,6 +61,7 @@ For the uninitiated, this means:
 **Notes**
 1. Compiler optimisations. The STM32F042 test were done at -O1 and -O3 optimisations. At -O3, the benchmark improved slightly to 2.033s.
 2. To me, the standouts in these tests are the AVR, dsPIC and RISC-V. The ARM chips are all running in 32-bits operating on 32-bit values. The AVR is running in 8-bit working on 16-bit values. It's impressive how good its Iterations/MHz score is.
+3. For some reason, the RP2040 is 34% faster than the STM32F0, MHz-for-MHz, despite the fact that they both have ARM Cortex-M0+ cores.
 
 ## Known Issues
 1. The printDec() routine actually only displays +/- values within the range of +/- 32,767 on 8-bit systems using a 16-bit int as its cell size and 
