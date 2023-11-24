@@ -27,6 +27,8 @@ The files needed to build the project with SDCC on an STC 8051 or similar can be
 - rxChar()
 - available()
 - getMillis()
+- getPin()
+- setPin()
 
 ## CMINT Benchmarks
 Benchmarks, because of course, we need to know. These benchmarks are of what has become a typical "million empty loop" test. Basically, it looks like this:
