@@ -50,6 +50,7 @@ For the uninitiated, this means:
 
 | Device | Core | MHz | Time | Clocks Per Iteration | Iterations/s | Dev Tool |
 | ------ | ---- | --- | ---- | -------------------- | ------------ | -------- |
+| STM32H743 | ARM Cortex M7 | 480 | 0.067 | 12.86 |  14,925,373 | Arduino |
 | Sipeed Maix Bit 2 | RISC-V RV64GC | 400 | 0.1557 | 62 |  6,422,607 | Arduino |
 | ESP32-C3 | RISC-V RV32I | 160 | 0.392 | 63 |  2,551,020 | Arduino |
 | ESP32 | Tensilica Xtensa LX7 | 240 | 0.4 | 96 |  2,500,000 | Arduino |
@@ -63,7 +64,9 @@ For the uninitiated, this means:
 **Notes**
 1. Compiler optimisations. The STM32F042 test were done at -O1 and -O3 optimisations. At -O3, the benchmark improved slightly to 2.033s.
 2. To me, the standouts in these tests are the AVR, dsPIC and RISC-V. The ARM chips are all running in 32-bits operating on 32-bit values. The AVR is running in 8-bit working on 16-bit values. It's impressive how good its Iterations/MHz score is.
-3. For some reason, the RP2040 is 34% faster than the STM32F0, MHz-for-MHz, despite the fact that they both have ARM Cortex-M0+ cores.
+3. For those who contend that empty loops don't make for a good benchmark, I have since tried CMINT with a linear AND recursive version of the Fibonacci sequence generator, and while they do turn in a very slightly higher words per second execution (with linear being faster than recursive) than the empty loops, the difference wasn't big enough for me to say that the empty loops have no value...
+4. For some reason, the RP2040 is 34% faster than the STM32F0, MHz-for-MHz, despite the fact that they both have ARM Cortex-M0+ cores.
+5. STM32H743 result contributed by Ken Boak <https://github.com/monsonite>.
 
 ## Known Issues
 1. The printDec() routine actually only displays +/- values within the range of +/- 32,767 on 8-bit systems using a 16-bit int as its cell size and 
