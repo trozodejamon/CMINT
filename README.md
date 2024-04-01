@@ -11,8 +11,7 @@ The files needed to build the project with SDCC on an STC 8051 or similar can be
 ## Yet to be done
 1. Arrays [] - entering balanced [] is already supported by the line editing routine, but not by the interpreter.
 2. Break from loop.
-3. Pin GPIO input/output \\> and \\<
-4. I would like to add some basic support for fixed-point math.
+3. I would like to add some basic support for fixed-point math.
 
 ## Differences from the original MINT
 1. CMINT will abort input or execution with an error message, whereas original Z80 MINT often will continue.
@@ -22,13 +21,19 @@ The files needed to build the project with SDCC on an STC 8051 or similar can be
 
 ## Porting Instructions
 1. You need to take the mint.c and mint.h files (renaming extensions as needed for convenience), add it to the project of your platform/IDE of choice.
-2. Then you need to implement the following functions in your own project:
-- txChar()
-- rxChar()
-- available()
-- getMillis()
-- getPin()
-- setPin()
+2. Then you need to implement the following functions in your own project. Note prior to the 1st April 2024 updates, I unwittingly used function names that already existed in the Arduino Core and I was actually redefining them. Concerned about this, I have renamed these external functions so there is no overlap:
+
+| Old Version | New Version |
+| ----------- | ----------- |
+| txChar() | txChar() |
+| rxChar() | rxChar() |
+| available() | rxAvail() |
+| getMillis() | getMillis() |
+| getPin() | getIOPin() |
+| setPin() | setIOPin() |
+
+In addition, the following new function has been defined to be implemented in the main.c:
+- setIOPinType() - this is essentially equivalent to Arduino's pinMode() function.
 
 ## CMINT Benchmarks
 Benchmarks, because of course, we need to know. These benchmarks are of what has become a typical "million empty loop" test. Basically, it looks like this:
