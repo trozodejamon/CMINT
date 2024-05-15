@@ -200,18 +200,23 @@ Note: logical NOT can be achieved with 0=
 
 ### Input & Output Operations
 
-| Symbol | Description                                               | Effect      |
-| ------ | --------------------------------------------------------- | ----------- |
-| ?      | read a char from input                                    | -- val      |
-| .      | print the top member of the stack as a decimal number DOT | a --        |
-| ,      | print the number on the stack as a hexadecimal            | a --        |
-| \`     | print the literal string between \` and \`                | --          |
-| \\.    | print a null terminated string                            | adr --      |
-| \\,    | prints a character to output                              | val --      |
-| \\$    | prints a CRLF to output                                   | --          |
-| \\>    | output to an I/O port                                     | val port -- |
-| \\<    | input from a I/O port                                     | port -- val |
-| #      | the following number is in hexadecimal                    | a --        |
+| Symbol | Description                                               | Effect       |
+| ------ | --------------------------------------------------------- | ------------ |
+| ?      | read a char from input                                    | -- val       |
+| #      | the following number is in hexadecimal                    | a --         |
+| .      | print the top member of the stack as a decimal number DOT | a --         |
+| ,      | print the number on the stack as a hexadecimal            | a --         |
+| \`     | print the literal string between \` and \`                | --           |
+| \\.    | print a null terminated string                            | adr --       |
+| \\,    | prints a character to output                              | val --       |
+| \\$    | prints a CRLF to output                                   | --           |
+| \\~    | set I/O port pin modes                                    | port mode -- |
+| \\>    | output to an I/O port                                     | val port --  |
+| \\<    | input from a I/O port                                     | port -- val  |
+| \\%    | input from an ADC pin                                     | pin -- val   |
+| \\=    | SPI data exchange                                         | tx -- rx     |
+| \\+    | I2C send                                                  | val -- error |
+| \\-    | I2C receive                                               | -- val error |
 
 ### User Defined Commands
 
@@ -270,6 +275,9 @@ e.g.    0(`will not execute`)(`will execute`)
 | \\h    | heap pointer variable              | -- adr |
 | \\i    | loop counter variable              | -- adr |
 | \\j    | outer loop counter variable        | -- adr |
+| \\s    | SPI speed                          | n --   |
+| \\t    | I2C speed                          | n --   |
+| \\v    | print MINT welcome/version banner  | -- adr |
 
 ### Miscellaneous
 
