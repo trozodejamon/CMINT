@@ -210,7 +210,7 @@ Note: logical NOT can be achieved with 0=
 | \\.    | print a null terminated string                            | adr --       |
 | \\,    | prints a character to output                              | val --       |
 | \\$    | prints a CRLF to output                                   | --           |
-| \\~    | set I/O port pin modes                                    | port mode -- |
+| \\|    | set I/O port pin modes                                    | port mode -- |
 | \\>    | output to an I/O port                                     | val port --  |
 | \\<    | input from a I/O port                                     | port -- val  |
 | \\%    | input from an ADC pin                                     | pin -- val   |
