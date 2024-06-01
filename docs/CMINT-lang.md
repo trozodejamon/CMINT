@@ -218,6 +218,15 @@ Note: logical NOT can be achieved with 0=
 | \\+    | I2C send                                                  | val -- error |
 | \\-    | I2C receive                                               | -- val error |
 
+### Pin I/O Mode Constants
+| Value | Input/Output Mode    |
+| ----- | -------------------- |
+| 0     | Output Pin           |
+| 1     | Input Pin            |
+| 2     | Input with Pull Up   |
+| 3     | Input with Pull Down |
+| 4     | Analog Input         |
+
 ### User Defined Commands
 
 | Symbol  | Description                     | Effect   |
